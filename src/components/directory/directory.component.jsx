@@ -1,63 +1,48 @@
-import React from "react";
+import DirectoryItem from '../directory-item/directory-item.component';
 
-import MenuItem from "../menu-item/menu-item.component";
+import { DirectoryContainer } from './directory.styles';
 
-class Directory extends React.Component {
-  constructor() {
-    super();
+const categories = [
+  {
+    id: 1,
+    title: 'hats',
+    imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+    route: 'shop/hats',
+  },
+  {
+    id: 2,
+    title: 'jackets',
+    imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
+    route: 'shop/jackets',
+  },
+  {
+    id: 3,
+    title: 'sneakers',
+    imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+    route: 'shop/sneakers',
+  },
+  {
+    id: 4,
+    title: 'womens',
+    imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
+    route: 'shop/womens',
+  },
+  {
+    id: 5,
+    title: 'mens',
+    imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
+    route: 'shop/mens',
+  },
+];
 
-    this.state = {
-      sections: [
-        {
-          title: "hats",
-          imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
-          id: 1,
-          linkUrl: 'hats'
-        },
-        {
-          title: "jackets",
-          imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-          id: 2,
-          linkUrl: ''
-        },
-        {
-          title: "sneakers",
-          imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-          id: 3,
-          linkUrl: ''
-        },
-        {
-          title: "womens",
-          imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-          size: "large",
-          id: 4,
-          linkUrl: ''
-        },
-        {
-          title: "mens",
-          imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-          size: "large",
-          id: 5,
-          linkUrl: ''
-        },
-      ],
-    };
-  }
-
-  render() {
-    /* instead of this monstrosity 
-    
-        {this.state.sections.map(({ title, imageUrl, linkUrl, id }) => (
-          <MenuItem key={id} linkUrl={linkUrl} title={title} imageUrl={imageUrl} />
-          we can coat it with syntax sugar from ES6 */
-    return (
-      <div className="directory-menu">
-        {this.state.sections.map(({ id, ...otherSectionProps }) => (
-          <MenuItem key={id} {...otherSectionProps} />
-        ))}
-      </div>
-    );
-  }
-}
+const Directory = () => {
+  return (
+    <DirectoryContainer>
+      {categories.map((category) => (
+        <DirectoryItem key={category.id} category={category} />
+      ))}
+    </DirectoryContainer>
+  );
+};
 
 export default Directory;
